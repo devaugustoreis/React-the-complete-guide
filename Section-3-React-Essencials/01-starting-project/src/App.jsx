@@ -35,24 +35,30 @@ function App() {
         <section id="core-concepts">
           <h2>Time to get started!</h2>
           <ul>
-            <CoreConcept
+            {CORE_CONCEPTS.map((concept) => (
+              <CoreConcept key={concept.title} {...concept} />
+            ))}
+
+            {/* Manual approach */}
+
+            {/* <CoreConcept
               title={CORE_CONCEPTS[0].title}
               description={CORE_CONCEPTS[0].description}
               image={CORE_CONCEPTS[0].image}
             />
             <CoreConcept {...CORE_CONCEPTS[1]} />
             <CoreConcept {...CORE_CONCEPTS[2]} />
-            <CoreConcept {...CORE_CONCEPTS[3]} />
+            <CoreConcept {...CORE_CONCEPTS[3]} /> */}
           </ul>
         </section>
 
         <section id="examples">
           <h2>Examples</h2>
           <menu>
-            <TabButton onClick={() => handleClick('components')}>Components</TabButton>
-            <TabButton onClick={() => handleClick('jsx')}>JSX</TabButton>
-            <TabButton onClick={() => handleClick('props')}>Props</TabButton>
-            <TabButton onClick={() => handleClick('state')}>State</TabButton>
+            <TabButton isActive={selectedTopic === 'components'} onClick={() => handleClick('components')}>Components</TabButton>
+            <TabButton isActive={selectedTopic === 'jsx'} onClick={() => handleClick('jsx')}>JSX</TabButton>
+            <TabButton isActive={selectedTopic === 'props'} onClick={() => handleClick('props')}>Props</TabButton>
+            <TabButton isActive={selectedTopic === 'state'} onClick={() => handleClick('state')}>State</TabButton>
           </menu>
 
           {/* Opção 1 */}
