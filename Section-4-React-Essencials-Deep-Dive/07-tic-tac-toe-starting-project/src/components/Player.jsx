@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function Player({ initialName, symbol}) {
+export default function Player({ initialName, symbol, isActive}) {
     const [ playerName, setPlayerName] = useState(initialName)
     const [ isEditing, setIsEditing ] = useState(false);
 
@@ -12,7 +12,7 @@ export default function Player({ initialName, symbol}) {
         setIsEditing(!isEditing); // also schedules a state update to true, because in this line 'isEditing' is still the same value as above.
         */
 
-        // This is the best practice becausa of the explanation above.
+        // This is the best practice because of the explanation above.
         setIsEditing(editing => !editing)
         // setIsEditing(editing => !editing) // here 'isEditing' constains the latest value and is already updated.
     }
@@ -31,7 +31,7 @@ export default function Player({ initialName, symbol}) {
     }
 
     return (
-        <li>
+        <li className={ isActive ? 'active' : undefined}>
             <span className="player">
                 { editablePlayerName }
                 <span className="player-symbol">{ symbol }</span>
