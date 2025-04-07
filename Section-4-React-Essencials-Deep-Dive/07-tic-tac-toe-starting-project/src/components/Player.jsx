@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
-export default function Player({ initialName, symbol, isActive}) {
-    const [ playerName, setPlayerName] = useState(initialName)
+export default function Player({ initialName, symbol, isActive, onNameChange }) {
+    const [ playerName, setPlayerName] = useState(initialName) 
+    // Obs.: We don't want to lift the playerName up (to App), because every keystroke would make the entire App component do re-render. 
     const [ isEditing, setIsEditing ] = useState(false);
 
     function handleEditClick() {
@@ -15,10 +16,13 @@ export default function Player({ initialName, symbol, isActive}) {
         // This is the best practice because of the explanation above.
         setIsEditing(editing => !editing)
         // setIsEditing(editing => !editing) // here 'isEditing' constains the latest value and is already updated.
-    }
 
+        if (isEditing) {
+            onNameChange(symbol, playerName)
+        }
+    }
+    
     function handleChange(event) {
-        console.log(event.target.tagName === 'INPUT')
         setPlayerName(event.target.value)
     }
 
