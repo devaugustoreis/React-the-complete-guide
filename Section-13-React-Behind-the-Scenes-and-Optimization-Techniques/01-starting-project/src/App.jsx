@@ -19,7 +19,8 @@ function App() {
             <Header />
             <main>
                 <ConfigureCounter onSet={handleSetCount} />
-                <Counter initialCount={chosenCount} />
+                {/* Passing chosenCount as key will make the component execute again whenever its value changes */}
+                <Counter key={chosenCount} initialCount={chosenCount} />
             </main>
         </>
     );
